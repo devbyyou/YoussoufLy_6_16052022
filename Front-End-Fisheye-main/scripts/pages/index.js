@@ -57,5 +57,4 @@ async function init() {
   const profiles = await getUser();
   displayData(photographers, profiles);
 }
-
 init();
