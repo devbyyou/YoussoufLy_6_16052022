@@ -2,7 +2,7 @@ function photographerFactory(data, profile) {
   const { name, portrait, city } = data;
   const firstname = name.split(" ")[0];
 
-  const picture = `assets/photographers/${firstname}/${profile.image}`;
+  const picture = `Front-End-Fisheye-main/assets/photographers/${firstname}/${profile.image}`;
 
   function getUserCardDOM() {
     const article = document.createElement("article");

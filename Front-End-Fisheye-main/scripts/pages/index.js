@@ -1,6 +1,6 @@
 function getPhotographers() {
   // // et bien retourner le tableau photographers seulement une fois
-  const photographers = fetch("data/photographers.json")
+  const photographers = fetch("Front-End-Fisheye-main/data/photographers.json")
     .then((data) => data.json())
     .then((data) => data.photographers);
 
@@ -9,7 +9,7 @@ function getPhotographers() {
 }
 
 function getUser() {
-  const profiles = fetch("data/profiles.json")
+  const profiles = fetch("Front-End-Fisheye-main/data/profiles.json")
     .then((data) => data.json())
     .then((data) => data.profiles);
 
