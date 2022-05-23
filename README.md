@@ -1,4 +1,3 @@
-# YoussoufLy_6_16052022
 # projet P6 - Parcours Front-end
 
 ## Table des matières
