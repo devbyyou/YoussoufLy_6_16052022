@@ -1,5 +1,16 @@
 @import url("photographer.css");
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+ a{
+      text-decoration: none;
+      list-style-type: none;
+      color:#000000 ;
+  }
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;

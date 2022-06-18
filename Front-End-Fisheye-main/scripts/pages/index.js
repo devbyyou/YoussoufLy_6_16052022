@@ -8,35 +8,17 @@ function getPhotographers() {
   return photographers;
 }
 
-function getUser() {
-  const profiles = fetch("Front-End-Fisheye-main/data/profiles.json")
+async function getProfiles() {
+  // Penser à remplacer par les données récupérées dans le json
+  const profiles = await fetch("Front-End-Fisheye-main/data/profiles.json")
     .then((data) => data.json())
-    .then((data) => data.profiles);
+    .then((resultat) => resultat.profiles);
 
   console.log(profiles);
 
-  return profiles;
+  // et bien retourner le tableau photographers seulement une fois
+  return  profiles ;
 }
-//---------------------------------TEST
-// const userDisplay = async () => {
-//   await getPhotographers();
-
-//   document.body.innerHTML = photographers
-//     .map(
-//       (user) =>
-//         `
-//         <div class="photographer_section">
-//         <img src="${user.portrait}" alt="photo de ${user.name}">
-//         <h2>${user.name}</h2>
-//         <p>${user.city} </p>
-
-//         </div>
-//     `
-//     )
-//     .join("");
-// };
-// userDisplay();
-//---------------------------------TEST
 
 function displayData(photographers, profiles) {
   const photographersSection = document.querySelector(".photographer_section");
@@ -54,7 +36,7 @@ function displayData(photographers, profiles) {
 async function init() {
   // Récupère les datas des photographes
   const photographers = await getPhotographers();
-  const profiles = await getUser();
+  const profiles = await getProfiles();
   displayData(photographers, profiles);
 }
 init();
