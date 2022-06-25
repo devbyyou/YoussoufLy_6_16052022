@@ -8,4 +8,4 @@ function closeModal() {
     modal.style.display = "none";
 
 }
-console.log(closeModal);
+

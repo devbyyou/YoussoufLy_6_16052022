@@ -15,7 +15,7 @@ function photographerFactory(data, profile) {
     const h4tag = document.createElement("h4");
     const pric = document.createElement("p");
     const createA = document.createElement("a");
-    createA.setAttribute("href", `./photographer.html?${profile.id}`);
+    createA.setAttribute("href", `./photographer.html?id=${profile.id}`);
     //html
     h2.textContent = name;
     h3pv.innerHTML = ` ${city}, ${country}`;

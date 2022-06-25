@@ -1,10 +1,9 @@
-function getPhotographers() {
+async function getPhotographers() {
   // // et bien retourner le tableau photographers seulement une fois
-  const photographers = fetch("Front-End-Fisheye-main/data/photographers.json")
+  const photographers = await fetch("Front-End-Fisheye-main/data/photographers.json")
     .then((data) => data.json())
     .then((data) => data.photographers);
 
-  console.log(photographers);
   return photographers;
 }
 
@@ -14,10 +13,8 @@ async function getProfiles() {
     .then((data) => data.json())
     .then((resultat) => resultat.profiles);
 
-  console.log(profiles);
-
   // et bien retourner le tableau photographers seulement une fois
-  return  profiles ;
+  return profiles;
 }
 
 function displayData(photographers, profiles) {
@@ -40,3 +37,5 @@ async function init() {
   displayData(photographers, profiles);
 }
 init();
+
+
