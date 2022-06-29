@@ -1,5 +1,6 @@
 function photographerFactory(data, profile) {
   const { city, country, name, tagline, price, portrait } = data;
+
   const firstname = name.split(" ")[0];
 
   const pictures = `Front-End-Fisheye-main/assets/photographers/${firstname}/${profile.image}`;
@@ -15,7 +16,10 @@ function photographerFactory(data, profile) {
     const h4tag = document.createElement("h4");
     const pric = document.createElement("p");
     const createA = document.createElement("a");
-    createA.setAttribute("href", `./photographer.html?id=${profile.id}`);
+    createA.setAttribute("href", `./photographer.html?idParams=${data.id}`);
+    const createb = document.createElement("a");
+    createb.setAttribute("href", `./photographer.html?idParam=${data.id}`);
+
     //html
     h2.textContent = name;
     h3pv.innerHTML = ` ${city}, ${country}`;
