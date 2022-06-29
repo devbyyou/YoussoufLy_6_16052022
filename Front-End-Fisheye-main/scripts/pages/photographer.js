@@ -96,7 +96,7 @@ const getDisplayPhotographer = function () {
           console.log(index);
         }
         if (media.photographerId == 930) {
-          console.log("t'es un champion");
+          console.log("");
 
           index.push(10);
           
