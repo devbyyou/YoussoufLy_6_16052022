@@ -1,9 +1,8 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
 const getPhotographers2 = async function () {
   const photographers = await fetch(
-    "Front-End-Fisheye-main/data/photographers.json"
-  )
+      "Front-End-Fisheye-main/data/photographers.json"
+    )
     .then((data) => data.json())
     .then((data) => data.photographers);
 
@@ -31,15 +30,15 @@ const getMedia = async function () {
 // -----
 // --------------
 // -----
-const getDisplayPhotographer = function () {
+
+const getDisplayPhotographer = function (photographers, profiles, medias) {
   const main = document.querySelector(".photograph-header");
 
   getPhotographers2().then((photographers) => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const id = urlSearchParams.get("idParams");
     const photographer = photographers.find((p) => p.id === parseInt(id));
-    // Tu peux maintenant construire ta page avec les infos du photographer
-    //
+    // construire page avec les infos du photographer
     const name = `${photographer.name}`;
     const firstname = name.split(" ")[0];
     const pictures = `Front-End-Fisheye-main/assets/photographers_image/Portrait_${firstname}.jpg`;
@@ -63,59 +62,44 @@ const getDisplayPhotographer = function () {
     main.appendChild(img);
   });
 
-  getMedia().then((medias) => {
-    const main2 = document.querySelector(".image_media");
+  const getPhotographerMedia = function (photographers, medias) {
+    const photographerMedia = {};
+    photographers.forEach((photographer) => {
+      photographerMedia[photographer.id] = medias.filter(
+        (media) => media.photographerId === photographer.id
+      );
+    });
+    console.log(photographerMedia);
+    return photographerMedia;
+  }
 
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const id = urlSearchParams.get("idParams");
-    const media = medias.find((p) => p.photographerId === parseInt(id));
-    console.log(media.photographerId);
-    //
+  
+  var mediasById = getPhotographerMedia(photographers, medias);
 
-    const pictures3 = `Front-End-Fisheye-main/assets/${media.photographerId}/video1.mp4`;
+  // récupère les data d'un photographe par son id 
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const id = urlSearchParams.get("idParams");
+  const photographerMedia = mediasById[id];
 
-    const lemp4 = document.createElement("video");
-    lemp4.setAttribute("src", pictures3);
-    lemp4.setAttribute("controls", pictures3);
-    main2.appendChild(lemp4);
+  // Récupère les data du photographe par son id 
 
-    let index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    for (let i = 0; i < index.length; i++) {
-      let name = `${media.photographerId}`;
-      const jpg = ".jpg";
-      const pictures2 = `Front-End-Fisheye-main/assets/${name}/Portrait_${index[i]}${jpg}`;
+  const photographer = photographers.find((p) => p.id === parseInt(id));
 
-      // function
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (this.readyState === this.DONE) {
-          // console.log(this.status); // do something; the request has completed
-        } else {
-          index = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-          index.pop();
-          console.log(index);
-        }
-        if (media.photographerId == 930) {
-          console.log("");
+  // construire le nom avec un - entre les 2 noms
+  const name = `${photographer.name}`;
+  const firstname = name.split(" ")[0];
+  // Créer le lien vers les photos 
+  const imagesLink = `Front-End-Fisheye-main/assets/photographers/${firstname}/`;
 
-          index.push(10);
-          
-        }
-      };
-      xhr.open("HEAD", pictures2); // replace with URL of your choosing
-      xhr.send();
-
-      const img3 = document.createElement("img");
-
-      img3.setAttribute("src", pictures2);
-      main2.appendChild(img3);
-      console.log(index[i]);
-    }
-
-    //
-
-    //
+  // Afficher les photos du photographe
+  const photos = document.querySelector(".image_media");
+  photographerMedia.forEach((media) => {
+    const img = document.createElement("img");
+    img.setAttribute("src", `${imagesLink}${media.image}`);
+    photos.appendChild(img);
   });
+
+
 };
 
 async function init() {

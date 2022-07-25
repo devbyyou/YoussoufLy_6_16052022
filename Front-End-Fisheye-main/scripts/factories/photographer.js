@@ -17,8 +17,7 @@ function photographerFactory(data, profile) {
     const pric = document.createElement("p");
     const createA = document.createElement("a");
     createA.setAttribute("href", `./photographer.html?idParams=${data.id}`);
-    const createb = document.createElement("a");
-    createb.setAttribute("href", `./photographer.html?idParam=${data.id}`);
+    
 
     //html
     h2.textContent = name;
