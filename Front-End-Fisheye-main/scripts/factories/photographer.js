@@ -37,7 +37,7 @@ function photographerFactory(data, profile) {
     article.appendChild(h4tag);
     article.appendChild(pric);
     createA.appendChild(img);
-    createA.appendChild(h2);
+    // createA.appendChild(h2);
 
     return article;
   }
