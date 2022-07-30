@@ -7,28 +7,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="favicon.ico">
+  <script src="https://kit.fontawesome.com/39e2a55935.js" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/b15ad03e0d.js" crossorigin="anonymous"></script>
   <title>Fisheye - photographe </title>
 </head>
 
 <body>
   <header>
-    <img src="Front-End-Fisheye-main/assets/images/logo.png" class="logo" />
+    <a href="./index.html" class="">
+      <img src="Front-End-Fisheye-main/assets/images/logo.png" class="logo" />
+    </a>
   </header>
-  <main id="main">
-    <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+
+  <div class="container">
+    <div class="the_encart_tarif">
+      <div id="encart_tarif" id="injecte_nbr-likes">
+          <div>122 220<i class="fas fa-heart"></i>
+          </div>
+           <div>300€/jour</div>
+      </div>
     </div>
-    <!-- Début Portfolio -->
-    <section id="potfolio_container">
+    <main id="main">
 
-      <article id="portfolio" class="">
-      </article>
-    </section>
-
-    <!-- Fin Portfolio -->
-
-  </main>
+      <div class="photograph-header">
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
+      <!-- Début Portfolio -->
+      <section id="potfolio_container">
+        <article id="portfolio" class=""></article>
+      </section>
+      <!-- Fin Portfolio -->
+    </main>
+  </div>
   <div id="contact_modal">
     <div class="modal">
       <header>

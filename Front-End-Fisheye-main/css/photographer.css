@@ -7,7 +7,10 @@
     font-family: 'Kumbh Sans', sans-serif;
 }
 
-
+/* body{
+    position: relative; */
+/* display: flex;
+} */
 
 #contact_modal {
     display: none;
@@ -98,21 +101,70 @@ video {
     color: #901C1C;
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
 
 }
+
 .description_title {
     /* font-family: 'Kumbh Sans', sans-serif; */
     color: #901C1C;
 }
+
 .svg-inline--fa {
-    /* display: var(--fa-display,inline-block);
+    display: var(--fa-display, inline-block);
     height: 1em;
     overflow: visible;
-    vertical-align: -0.125em; */
+    vertical-align: -0.125em;
     margin-left: 6px;
+
 }
+
 /* Fin Portfolio */
+/* ----------------------------------------------------------------------------- */
+.container {
+    position: relative;
+    display: flex;
+    /* position: fixed; */
+    justify-content:center;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    /* z-index:1; */
+}
+
+.the_encart_tarif {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    position: fixed;
+    right: 0em;
+    bottom: 0em;
+    left: 60em;
+    /* top: 0em; */
+    
+    z-index: 1;
+}
+
+#encart_tarif {
+    width: 350px;
+    height: 65px;
+    background-color: #db8876;
+    border-radius: 7px 7px 0px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* #injecte_nbr-likes{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+} */
+
 
 .contact_button {
 
