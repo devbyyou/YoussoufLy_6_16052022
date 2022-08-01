@@ -42,7 +42,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     const name = `${photographer.name}`;
     const firstname = name.split(" ")[0];
     // Créer le lien vers les photos 
-    const imagesLink = `Front-End-Fisheye-main/assets/photographers/photographers_ID_Photos/`;
+    const imagesLink = `Front-End-Fisheye-main/assets/photographers/Photographers_ID_Photos/`;
     // --// déclaration
     const title = document.createElement("h2");
     const location = document.createElement("h3");
