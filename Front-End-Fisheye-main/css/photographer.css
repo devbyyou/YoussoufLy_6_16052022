@@ -561,3 +561,39 @@ textarea#msg.text-control {
     }
 
 }
+
+/*---------------------------------------  parti likes ---------------------———-------------*/
+
+
+
+/*---------------------------------------  parti likes ---------------------———-------------*/
+
+
+path{
+    padding:40px;
+    padding-bottom:25px;
+    border-radius:100%;
+    transition:.2s;
+  }
+  
+  path:hover{
+    color:#F1A9A0;
+    transition:.1s;
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse{
+    0% {
+      color:pink;
+  
+    }
+    10%{
+      transform: scale(1.05,1.05);
+    }
+    50%{
+      transform: scale(1.07,1.07);
+      color:darken(pink, 20%);
+      background:white;
+      box-shadow: 10px 10px 10px #F1A9A0, -10px -10px 10px #F1A9A0, 10px -10px 10px #F1A9A0, -10px 10px 10px #F1A9A0;
+    }
+  }

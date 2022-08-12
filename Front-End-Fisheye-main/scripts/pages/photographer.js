@@ -103,10 +103,10 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     <div class="image_media">
       <a href="" class="">
         <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+        </a>
         <div class="description">
           <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
         </div>
-      </a>
     </div>
     `
     } else if (media.video) {
@@ -116,33 +116,49 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     <a href="" class="">
     <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
     </video>
+    </a>
     <div class="description">
     <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
-   </div>
-    </a>
+    </div>
   </div>
   `;
-
     }
-
   });
-  // console.log(photographers);
+  // ------------------------------------------------------------------
+  // ---------------------------------------Parti likes 
+  // ------------------------------------------------------------------
+  const encartLikes = document.getElementById('injecteNbrLikes')
+  const likesNbr = document.createElement('p')
 
-  //  parti Lightbox
-  // const ok = document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]')
-  // console.log(ok);
-
+  let totalLikes = photographerMedia.reduce((sum, medi) => sum += medi.likes, 0);
+  // console.log(totalLikes);
+  likesNbr.innerHTML = `${totalLikes} <i class="fas fa-heart" aria-label="icone coeur"></i>`
+  likesNbr.style = ''
+  encartLikes.appendChild(likesNbr)
+  // -------------------------------------incrémentation likes 
+  const descriptionLikes = document.querySelectorAll('.description_likes')
+  descriptionLikes.forEach(desrc => {
+    
+   const onClick = function () {
+     desrc.innerHTML = `${+desrc.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
+     likesNbr.innerHTML = `${+likesNbr.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
+     const heart = document.querySelector('i')
+     desrc.style.color= "#F1A9A0"
+     desrc.removeEventListener("click",onClick)
+    }
+     desrc.addEventListener("click",onClick)
+  });
+  // ---------------------------------------------------------------------------------
   class Lightbox {
     static init() {
-
       const links = Array.from(
         document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]')
       )
       const gallery = links.map(link => link.getAttribute('src'))
+
       links.forEach(link => link.addEventListener("click", e => {
         e.preventDefault()
         new Lightbox(e.currentTarget.getAttribute('src'), gallery)
-        // console.log(link);
       }))
     }
     constructor(url, images) {
@@ -161,7 +177,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       container.innerHTML = ''
       const title = document.createElement('h2')
       title.className = "titre_lightbox"
-      // -------------------------------------------------link For find video 
+      // -------------------------------------------------link For find image 
       var mediasById = getPhotographerMedia(photographers, medias);
       const urlSearchParams = new URLSearchParams(window.location.search);
       const id = urlSearchParams.get("idParams");
@@ -170,17 +186,17 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       const name = `${photographer.name}`;
       const firstname = name.split(" ")[0];
       const imagesLink = `Front-End-Fisheye-main/assets/photographers/${firstname}/`;
-      photographerMedia.forEach((media) => {  
-        // --------------------------------------------------link For find video 
+      photographerMedia.forEach((media) => {
         if (url === `${imagesLink}${media.image}`) {
-      image.onload = () => {
-        title.innerHTML=`${media.title}`
-        container.appendChild(image)
-        container.appendChild(title)
-        this.url = url
-      }
-      }
-    })
+          // --------------------------------------------------link For find image 
+          image.onload = () => {
+            title.innerHTML = `${media.title}`
+            container.appendChild(image)
+            container.appendChild(title)
+            this.url = url
+          }
+        }
+      })
       image.src = url
     }
     loadVideo(url) {
@@ -192,7 +208,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       container.innerHTML = ''
       const title = document.createElement('h2')
       title.className = "titre_lightbox"
-      
+
       // -------------------------------------------------link For find video 
       var mediasById = getPhotographerMedia(photographers, medias);
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -205,7 +221,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       photographerMedia.forEach((media) => {
         // --------------------------------------------------link For find video 
         if (url === `${imagesLink}${media.video}`) {
-          title.innerHTML=`${media.title}`
+          title.innerHTML = `${media.title}`
           container.appendChild(video)
           container.appendChild(title)
           this.url = url
@@ -265,9 +281,9 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     buildDOM(url) {
       const dom = document.createElement('div')
       dom.classList.add('lightbox')
-      dom.innerHTML = `<button class="lightbox__close">Fermer</button>
-      <button class="lightbox__next">Suivant</button>
-      <button class="lightbox__prev">Précédent</button>
+      dom.innerHTML = `<button class="lightbox__close"> </button>
+      <button class="lightbox__next"> </button>
+      <button class="lightbox__prev"> </button>
       <div class="lightbox__container"></div>`
       dom.querySelector('.lightbox__close').addEventListener('click', this.close.bind(this))
       dom.querySelector('.lightbox__next').addEventListener('click', this.next.bind(this))
