@@ -67,9 +67,10 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     nomContactTitle.appendChild(contactTitle);
 
   });
+
   //parti pour Portfolio
   const getPhotographerMedia = function (photographers, medias) {
-    const photographerMedia = {};
+    let photographerMedia = {};
     photographers.forEach((photographer) => {
       photographerMedia[photographer.id] = medias.filter(
         (media) => media.photographerId === photographer.id
@@ -78,11 +79,11 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     // console.log(photographerMedia);
     return photographerMedia;
   }
-  var mediasById = getPhotographerMedia(photographers, medias);
+  let mediasById = getPhotographerMedia(photographers, medias);
   // récupère les data d'un photographe par son id 
   const urlSearchParams = new URLSearchParams(window.location.search);
   const id = urlSearchParams.get("idParams");
-  const photographerMedia = mediasById[id];
+  let photographerMedia = mediasById[id];
   // Récupère les data du photographe par son id 
   const photographer = photographers.find((p) => p.id === parseInt(id));
   // construire le nom avec un - entre les 2 noms
@@ -100,28 +101,28 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     if (media.image) {
       portfolio.innerHTML +=
         `
-    <div class="image_media">
+      <div class="image_media">
       <a href="" class="">
-        <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
-        </a>
-        <div class="description">
-          <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
-        </div>
-    </div>
-    `
+      <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+      </a>
+      <div class="description">
+      <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+      </div>
+      </div>
+      `
     } else if (media.video) {
       portfolio.innerHTML +=
         `
-    <div class="image_media">
-    <a href="" class="">
-    <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
-    </video>
-    </a>
-    <div class="description">
-    <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
-    </div>
-  </div>
-  `;
+      <div class="image_media">
+      <a href="" class="">
+      <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
+      </video>
+      </a>
+      <div class="description">
+      <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+      </div>
+      </div>
+      `;
     }
   });
   // ------------------------------------------------------------------
@@ -136,19 +137,180 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
   likesNbr.style = ''
   encartLikes.appendChild(likesNbr)
   // -------------------------------------incrémentation likes 
-  const descriptionLikes = document.querySelectorAll('.description_likes')
-  descriptionLikes.forEach(desrc => {
-    
-   const onClick = function () {
-     desrc.innerHTML = `${+desrc.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
-     likesNbr.innerHTML = `${+likesNbr.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
-     const heart = document.querySelector('i')
-     desrc.style.color= "#F1A9A0"
-     desrc.removeEventListener("click",onClick)
+
+  class incrementation {
+    static init() {
+
+      const descriptionLikes = document.querySelectorAll('.description_likes')
+      descriptionLikes.forEach(desrc => {
+        const onClickIncr = function () {
+          desrc.innerHTML = `${+desrc.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
+          likesNbr.innerHTML = `${+likesNbr.innerText + 1} <i class="fas fa-heart" aria-label="icone coeur"></i>`;
+          const heart = document.querySelector('i')
+          desrc.style.color = "#F1A9A0"
+          desrc.removeEventListener("click", onClickIncr)
+        }
+        desrc.addEventListener("click", onClickIncr)
+      });
     }
-     desrc.addEventListener("click",onClick)
-  });
-  // ---------------------------------------------------------------------------------
+  }
+  incrementation.init();
+
+
+  // descriptionLikes.forEach(desrc => {
+  // });
+  // --------------------------------------  Sort méthode ---------------------------
+  // DOM selectors
+  const contact = document.querySelector('.contact_button');
+
+  // DOM selectors
+  const sort = document.querySelector('.sort-by');
+  const optionsGroup = sort.querySelector('ul');
+  const options = sort.querySelectorAll('li');
+  const inputs = sort.querySelectorAll('input');
+  const labels = sort.querySelectorAll('label');
+  const [arrow] = [...labels].filter(label => label.control.checked);
+
+  // SORT PHOTOS
+  sort.addEventListener('change', sortMedia);
+
+  function sortMedia() {
+    setOption();
+    portfolio.innerHTML = '';
+    switch (sort.target) {
+      case 'popularite':
+        photographerMedia = photographerMedia.sort((a, b) => b.likes - a.likes);
+        // displayPhotos(photographer.name, photographerMedia);
+        // photographer.name, photographerMedia
+        photographerMedia.forEach(media => {
+          if (media.image) {
+            portfolio.innerHTML +=
+              `
+            <div class="image_media ">
+            <a href="" class="">
+            <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+            </a>
+            <div class="description">
+            <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+            </div>
+            </div>
+            `
+          } else if (media.video) {
+            portfolio.innerHTML +=
+              `
+            <div class="image_media">
+            <a href="" class="">
+            <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
+            </video>
+            </a>
+            <div class="description">
+            <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+            </div>
+            </div>
+            `;
+          }
+
+        });
+        break;
+      case 'date':
+        photographerMedia = photographerMedia.sort((a, b) => b.date > a.date ? 1 : -1);
+        photographerMedia.forEach(media => {
+          if (media.image) {
+            portfolio.innerHTML +=
+              `
+                <div class="image_media ">
+                <a href="" class="">
+                <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+                </a>
+                <div class="description">
+                <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+                </div>
+                </div>
+                `
+          } else if (media.video) {
+            portfolio.innerHTML +=
+              `
+                <div class="image_media">
+                <a href="" class="">
+                <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
+                </video>
+                </a>
+                <div class="description">
+                <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+                </div>
+                </div>
+                `;
+          }
+        });
+        break;
+      case 'titre':
+        photographerMedia = photographerMedia.sort((a, b) => a.title > b.title ? 1 : -1);
+        photographerMedia.forEach(media => {
+          if (media.image) {
+            portfolio.innerHTML +=
+              `
+                  <div class="image_media ">
+                  <a href="" class="">
+                  <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+                  </a>
+                  <div class="description">
+                  <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+                  </div>
+                  </div>
+                  `
+          } else if (media.video) {
+            portfolio.innerHTML +=
+              `
+                  <div class="image_media">
+                  <a href="" class="">
+                  <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
+                  </video>
+                  </a>
+                  <div class="description">
+                  <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+                  </div>
+                  </div>
+                  `;
+          }
+        });
+        break;
+    }
+    Lightbox.init();
+    incrementation.init();
+    // Contact.init();
+  }
+//  SELECT OPTION & ACTIVATE SORT FUNCTION
+  function setOption() {
+    options.forEach(li => {
+      li.classList.remove('selected');
+      const input = li.querySelector('input');
+      if (input.checked == true) {
+        li.classList.add('selected');
+        sort.target = input.title;
+      }
+    })
+  }
+  // SORT MENU TOGGLE
+  optionsGroup.addEventListener('mouseenter', activateMenu);
+  optionsGroup.addEventListener('mouseover', activateMenu);
+  optionsGroup.addEventListener('mouseleave', desactivateMenu);
+
+  function toggleSortMenu() {
+    Array.from(options).every(li => li.classList.contains('active')) ?
+      desactivateMenu() : activateMenu();
+  }
+
+  // ACTIVATE SORT MENU
+  function activateMenu() {
+    options.forEach(li => li.classList.replace('inactive', 'active'));
+  }
+  // DESACTIVATE SORT MENU
+  function desactivateMenu() {
+    if ([...options].every(li => !li.matches(':hover'))) { // check no mouseover MENU
+      options.forEach(li => li.classList.replace('active', 'inactive'));
+    }
+  }
+  // --------------------------------------------------------------------------------
   class Lightbox {
     static init() {
       const links = Array.from(
@@ -292,6 +454,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     }
   }
   Lightbox.init();
+  // Contact.init();
 };
 
 async function init() {

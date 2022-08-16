@@ -458,7 +458,7 @@ textarea#msg.text-control {
     transition: opacity .3;
 }
 
-.lightbox.fadeOut{
+.lightbox.fadeOut {
     opacity: 0;
 }
 
@@ -523,7 +523,7 @@ textarea#msg.text-control {
     height: 84vh;
     width: 44%;
     animation: lightboxIn .5;
-    object-fit:cover;
+    object-fit: cover;
     position: relative;
 }
 
@@ -535,14 +535,16 @@ textarea#msg.text-control {
     flex-direction: row-reverse;
     flex-wrap: wrap;
 }
-.lightbox__container video{
+
+.lightbox__container video {
     height: 84vh;
     width: 44%;
     animation: lightboxIn .5;
     object-fit: cover;
     position: relative;
 }
-.titre_lightbox{
+
+.titre_lightbox {
     position: absolute;
     color: #901C1C;
     font-size: 16px;
@@ -569,31 +571,150 @@ textarea#msg.text-control {
 /*---------------------------------------  parti likes ---------------------———-------------*/
 
 
-path{
-    padding:40px;
-    padding-bottom:25px;
-    border-radius:100%;
-    transition:.2s;
-  }
-  
-  path:hover{
-    color:#F1A9A0;
-    transition:.1s;
+path {
+    padding: 40px;
+    padding-bottom: 25px;
+    border-radius: 100%;
+    transition: .2s;
+}
+
+path:hover {
+    color: #F1A9A0;
+    transition: .1s;
     animation: pulse 1s infinite;
-  }
-  
-  @keyframes pulse{
+}
+
+@keyframes pulse {
     0% {
-      color:pink;
-  
+        color: pink;
+
     }
-    10%{
-      transform: scale(1.05,1.05);
+
+    10% {
+        transform: scale(1.05, 1.05);
     }
-    50%{
-      transform: scale(1.07,1.07);
-      color:darken(pink, 20%);
-      background:white;
-      box-shadow: 10px 10px 10px #F1A9A0, -10px -10px 10px #F1A9A0, 10px -10px 10px #F1A9A0, -10px 10px 10px #F1A9A0;
+
+    50% {
+        transform: scale(1.07, 1.07);
+        color: darken(pink, 20%);
+        background: white;
+        box-shadow: 10px 10px 10px #F1A9A0, -10px -10px 10px #F1A9A0, 10px -10px 10px #F1A9A0, -10px 10px 10px #F1A9A0;
     }
-  }
+
+}
+
+/*---------------------------------------  parti Sort ---------------------———-------------*/
+
+/*    Sort   */
+
+/*---------------------------------------  parti Sort ---------------------———-------------*/
+.sort {
+    margin: 50px 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.sort strong {
+    margin-top: 20px;
+}
+
+.sort .sort-select {
+    position: relative;
+    width: 250px;
+    z-index: 1;
+}
+
+.sort .sort-select fieldset {
+    border: 0;
+    padding: 10px;
+}
+
+.sort .sort-select ul {
+    position: absolute;
+    top: -5px;
+    /* padding: 10px 10px; */
+    margin: 0 20px;
+    width: 156px;
+    border-radius: 5px;
+    list-style: none;
+    background-color: #901C1C;
+    color: white;
+    cursor: pointer;
+}
+
+.sort .sort-select ul * {
+    cursor: pointer;
+}
+
+.sort .sort-select ul li {
+    position: relative;
+    /* padding: 15px 0 15px 10px; */
+    margin: 0px 10px 0px 10px;
+    border-bottom: 1px solid #ffffff94;
+}
+.sort .sort-select ul li::after {
+   opacity: 0.6;
+}
+
+.sort .sort-select ul li:hover,
+.portfolio .sort .sort-select ul li:active {
+    outline: none;
+    color: pink;
+}
+
+.sort .sort-select ul li .fa-chevron-down {
+    display: none;
+    position: absolute;
+    right: 7px;
+    top: 20px;
+}
+
+.sort .sort-select ul li .fa-chevron-up {
+    display: none;
+    position: absolute;
+    right: 7px;
+    top: 20px;
+}
+
+.sort .sort-select ul li input[type=radio] {
+    display: none;
+}
+
+.sort .sort-select ul li label {
+       /* padding: 10px 50% 10px 0; */
+       color: white;
+       font-size: large;
+       height: 60px;
+       display: flex;
+       justify-content: flex-start;
+       flex-wrap: wrap;
+       flex-direction: row;
+       align-items: center;
+       margin-left: 10px;
+}
+
+.sort .sort-select ul li.active {
+    display: block;
+}
+
+.sort .sort-select ul li.active:nth-child(1) .fa-chevron-up {
+    display: block;
+}
+
+.sort .sort-select ul li.inactive {
+    display: none;
+}
+
+.sort .sort-select ul li.inactive.selected {
+    display: block;
+    border-bottom: 0;
+}
+
+.sort .sort-select ul li.inactive.selected .fa-chevron-down {
+    display: block;
+}
+
+.sort .sort-select ul li:nth-last-child(1) {
+    border-bottom: 0;
+}
