@@ -1,0 +1,26 @@
+{
+  "name": "p6_ly_youssouf_16052022",
+  "version": "1.0.0",
+  "description": "## Table des matières 1. [Créez un site accessible pour une plateforme de photographes](#Créez-un-site-accessible-pour-une-plateforme-de-photographes)      * [Livrables](#Livrables)      * [Soutenance](#Soutenance) 2. [Compétences évaluées](#Compétences-évaluées) 3. [Site final](#Site-final)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devbyyou/YoussoufLy_6_16052022.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devbyyou/YoussoufLy_6_16052022/issues"
+  },
+  "homepage": "https://github.com/devbyyou/YoussoufLy_6_16052022#readme",
+  "devDependencies": {
+    "eslint": "^8.22.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "prettier": "^2.7.1"
+  }
+}

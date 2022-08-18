@@ -196,6 +196,10 @@ main {
     cursor: pointer;
 }
 
+.contact_button:hover {
+    color: rgb(241, 169, 160);
+}
+
 .modal {
     border-radius: 5px;
     /* background-color: #DB8876; */
@@ -653,14 +657,14 @@ path:hover {
     margin: 0px 10px 0px 10px;
     border-bottom: 1px solid #ffffff94;
 }
+
 .sort .sort-select ul li::after {
-   opacity: 0.6;
+    opacity: 0.6;
 }
 
-.sort .sort-select ul li:hover,
-.portfolio .sort .sort-select ul li:active {
+.sort .sort-select ul li label:hover {
     outline: none;
-    color: pink;
+    color: rgb(241, 169, 160);
 }
 
 .sort .sort-select ul li .fa-chevron-down {
@@ -682,16 +686,16 @@ path:hover {
 }
 
 .sort .sort-select ul li label {
-       /* padding: 10px 50% 10px 0; */
-       color: white;
-       font-size: large;
-       height: 60px;
-       display: flex;
-       justify-content: flex-start;
-       flex-wrap: wrap;
-       flex-direction: row;
-       align-items: center;
-       margin-left: 10px;
+    /* padding: 10px 50% 10px 0; */
+    color: white;
+    font-size: large;
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
 }
 
 .sort .sort-select ul li.active {
@@ -717,4 +721,144 @@ path:hover {
 
 .sort .sort-select ul li:nth-last-child(1) {
     border-bottom: 0;
+}
+
+@media screen and (max-width: 1145px) {
+
+    #encart_tarif {
+        min-width: 260px;
+        width: 68%;
+    }
+
+
+    .the_encart_tarif {
+
+        left: 49em;
+    }
+}
+
+@media screen and (max-width: 1046px) {
+
+    #encart_tarif {
+        min-width: 260px;
+        width: 68%;
+    }
+
+
+    .the_encart_tarif {
+
+        left: 45em;
+    }
+}
+
+@media screen and (max-width: 950px) {
+
+    #portfolio {
+        -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        margin: 50px 0;
+    }
+
+
+    .the_encart_tarif {
+
+        /* bottom: 10.5em; */
+        left: 0em;
+        position: fixed;
+    }
+
+    .img_card,
+    #portfolio video {
+        width: 21vh;
+
+    }
+
+    .img_photographers {
+        top: 50%;
+        right: -5.2rem;
+        height: 177px;
+        width: 193px;
+    }
+
+    .contact_button {
+        top: 50%;
+        font-size: 15px;
+        width: 150px;
+        height: 54px;
+    }
+}
+
+@media screen and (max-width:730px) {
+
+    #portfolio {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        gap: 70px;
+        margin: 30px 0;
+    }
+
+    #encart_tarif {
+        min-width: 260px;
+        width: 100%;
+    }
+
+    .the_encart_tarif {
+
+        /* bottom: 10.5em; */
+        left: 0em;
+        position: fixed;
+    }
+
+    .img_card,
+    #portfolio video {
+        width: 21vh;
+
+    }
+
+    .img_photographers {
+        top: 25%;
+        right: -3.2rem;
+        height: 105px;
+        width: 110px;
+    }
+
+    .contact_button {
+        top: 80%;
+        font-size: 15px;
+        width: 150px;
+        height: 54px;
+    }
+
+    .photograph-header h2 {
+        margin-left: 0px;
+        font-size: 29px;
+    }
+}
+
+@media screen and (max-width:430px) {
+
+    .lightbox__container img,
+    .lightbox__container video {
+
+        height: 80vh;
+        width: 45vh;
+
+    }
+
+    .lightbox__next,
+    .lightbox__prev {
+
+        right: 5%;
+
+    }
+
+    .lightbox__prev {
+        left: 5%;
+    }
+
+    .lightbox__close {
+        right: 7%;
+        /* color: red; */
+    }
 }

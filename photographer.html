@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
     <link href="Front-End-Fisheye-main/css/style.css" rel="stylesheet" type="text/css" />
@@ -14,22 +14,21 @@
 
 <body>
     <header>
-        <a href="./index.html" class="">
-            <img src="Front-End-Fisheye-main/assets/images/logo.png" class="logo" />
+        <a href="./index.html">
+            <img src="Front-End-Fisheye-main/assets/images/logo.png" class="logo" alt="logo" />
         </a>
     </header>
     <div class="container">
-        <div class="the_encart_tarif">
+        <div class="the_encart_tarif" aria-label="Compteur likes & tarifs">
             <div id="encart_tarif">
-                <div id="injecteNbrLikes">
-
-                    <!-- <i class="fas fa-heart"></i> -->
+                <div id="injecteNbrLikes" aria-label="nombre total de likes">
+           <!-- <i class="fas fa-heart"></i> -->
                 </div>
-                <div>300€/jour</div>
+                <div id="price" aria-label="tarif journalier"> </div>
             </div>
         </div>
         <main id="main">
-            <div class="photograph-header">
+            <div class="photograph-header" aria-label="infos du photographe">
                 <button class="contact_button" onclick="displayModal()">
                     Contactez-moi
                 </button>
@@ -63,49 +62,51 @@
                     </fieldset>
                   </form>
                 </div>
-              </div>
-              <div class="portfolio-imgs" aria-label="portfolio">
-              </div>
+              </div>       
             <!--------------------------- Sort part ----------------------------------->
             <!-- Début Portfolio -->
-            <section id="potfolio_container">
+            <section id="potfolio_container" aria-label="portfolio">
                 <article id="portfolio" class=""></article>
             </section>
             <!-- Fin Portfolio -->
         </main>
     </div>
     <!-- Début partie modal -->
-    <div id="contact_modal">
+    <div id="contact_modal" aria-label="modale de contact">
         <div class="bground" id="modal">
             <div class="content">
                 <div class="modal-body" class="modal">
                     <header>
                         <h2 id="nomContact">Contactez-moi</h2>
                         <img class="btn-close" src="Front-End-Fisheye-main/assets/icons/close.svg"
-                            onclick="closeModal()" />
+                            onclick="closeModal()" alt="close button" aria-label="bouton fermer" />
                     </header>
-                    <form id="formModal" action="">
+                    <form id="formModal" action="" aria-label="formulaire de contact">
                         <div class="pseudo-container formData">
                             <label for="prenom">Prenom</label>
                             <input class="text-control" type="text" autocomplete="off" id="prenom" />
-                            <span></span>
+                            <span aria-label="Explication de complétion">Veuillez saisir au minimum 2
+                                caractères</span>
                         </div>
                         <div class="pseudo-container formData">
                             <label for="nom">Nom</label>
                             <input class="text-control" type="text" autocomplete="off" id="nom" />
-                            <span></span>
+                            <span aria-label="Explication de complétion">Veuillez saisir au minimum 2
+                                caractères</span>
                         </div>
                         <div class="email-container formData">
                             <label for="email">Email</label>
                             <input class="text-control" type="text" autocomplete="off" id="email" />
-                            <span></span>
+                            <span aria-label="Explication de complétion">Veuillez saisir un email
+                                valide</span>
                         </div>
 
                         <div class="pseudo-container formData">
                             <label for="prenom">Votre message</label>
                             <textarea class="text-control" type="text" autocomplete="off" id="msg"
                                 name="msg"></textarea>
-                            <span></span>
+                            <div aria-label="Explication de complétion">Votre message doit être
+                                composé d'au moins 2 caractères</div>
                         </div>
 
                         <input class="btn-submit button" type="submit" value="Envoyer" />

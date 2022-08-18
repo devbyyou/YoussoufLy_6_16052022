@@ -36,7 +36,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     const photographer = photographers.find((p) => p.id === parseInt(id));
     // construire page avec les infos du photographer
     const name = `${photographer.name}`;
-    const firstname = name.split(" ")[0];
+    // const firstname = name.split(" ")[0];
     // Créer le lien vers les photos 
     const imagesLink = `Front-End-Fisheye-main/assets/photographers/Photographers_ID_Photos/`;
     // --// déclaration
@@ -45,15 +45,18 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     const pTagline = document.createElement("p");
     const img = document.createElement("img");
     img.setAttribute("src", `${imagesLink}${photographer.portrait}`);
+    const divImg = document.createElement('div');
     //contact décla
     const contactTitle = document.createElement("h4");
     //html
     // titleContact.innerText = photographer.name;
+    img.alt = `${name}`;
     title.innerText = photographer.name;
     location.innerHTML = `${photographer.city}, ${photographer.country}`;
     pTagline.textContent = photographer.tagline;
     // Contact html
     contactTitle.innerText = photographer.name;
+    divImg.ariaLabel = `vignette de ${name}`;
     //Contact Style
     nomContactTitle.className = "title-Contact";
     //Style
@@ -63,7 +66,8 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     main.appendChild(title);
     main.appendChild(location);
     main.appendChild(pTagline);
-    main.appendChild(img);
+    main.appendChild(divImg);
+    divImg.appendChild(img)
     nomContactTitle.appendChild(contactTitle);
 
   });
@@ -97,16 +101,19 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     //décla
     // const img = document.createElement("img");
     // img.setAttribute("src", `${imagesLink}${media.image}`);
+    // console.log(media);
     const portfolio = document.querySelector('#portfolio')
     if (media.image) {
       portfolio.innerHTML +=
         `
       <div class="image_media">
       <a href="" class="">
+      <div title="${media.image}" alt="${media.title}" aria-label="${media.title}">
       <img class="img_card" src="${imagesLink}${media.image}" alt="Photo"/>
+      </div>
       </a>
       <div class="description">
-      <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+      <h4 class="description_title">${media.title}</h4> <span class="description_likes" aria-label="nombre de likes">${media.likes}<i class="fas fa-heart"></i></span> 
       </div>
       </div>
       `
@@ -115,11 +122,13 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
         `
       <div class="image_media">
       <a href="" class="">
+      <div title="${media.video}" alt="${media.title}" aria-label="${media.title}">
       <video src="${imagesLink}${media.video}" class="video" controls muted type="video/mp4"> 
       </video>
+      </div>
       </a>
       <div class="description">
-      <p class="description_title">${media.title}</p> <span class="description_likes">${media.likes}<i class="fas fa-heart"></i></span> 
+      <h4 class="description_title">${media.title}</h4> <span class="description_likes" aria-label="nombre de likes">${media.likes}<i class="fas fa-heart"></i></span> 
       </div>
       </div>
       `;
@@ -129,13 +138,16 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
   // ---------------------------------------Parti likes 
   // ------------------------------------------------------------------
   const encartLikes = document.getElementById('injecteNbrLikes')
+  const price = document.getElementById('price')
+  const pricee = document.createElement('p')
   const likesNbr = document.createElement('p')
-
   let totalLikes = photographerMedia.reduce((sum, medi) => sum += medi.likes, 0);
   // console.log(totalLikes);
   likesNbr.innerHTML = `${totalLikes} <i class="fas fa-heart" aria-label="icone coeur"></i>`
   likesNbr.style = ''
+  pricee.innerHTML = `${photographer.price}€ / jour`;
   encartLikes.appendChild(likesNbr)
+  price.appendChild(pricee)
   // -------------------------------------incrémentation likes 
 
   class incrementation {
@@ -279,7 +291,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
     incrementation.init();
     // Contact.init();
   }
-//  SELECT OPTION & ACTIVATE SORT FUNCTION
+  //  SELECT OPTION & ACTIVATE SORT FUNCTION
   function setOption() {
     options.forEach(li => {
       li.classList.remove('selected');
@@ -351,6 +363,10 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       photographerMedia.forEach((media) => {
         if (url === `${imagesLink}${media.image}`) {
           // --------------------------------------------------link For find image 
+          title.ariaLabel = `${media.title}`
+          title.alt = `${media.title}`
+          image.ariaLabel = `${media.title} Grande image`
+          image.alt = `${media.title} Grande image`
           image.onload = () => {
             title.innerHTML = `${media.title}`
             container.appendChild(image)
@@ -383,6 +399,10 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
       photographerMedia.forEach((media) => {
         // --------------------------------------------------link For find video 
         if (url === `${imagesLink}${media.video}`) {
+          title.ariaLabel = media.video
+          title.alt = media.video
+          video.ariaLabel = `${media.title} Grande video`
+          video.alt = `${media.title}  Grande video`
           title.innerHTML = `${media.title}`
           container.appendChild(video)
           container.appendChild(title)
@@ -442,6 +462,7 @@ const getDisplayPhotographer = function (photographers, profiles, medias) {
 
     buildDOM(url) {
       const dom = document.createElement('div')
+      dom.ariaLabel = "modale de média"
       dom.classList.add('lightbox')
       dom.innerHTML = `<button class="lightbox__close"> </button>
       <button class="lightbox__next"> </button>
